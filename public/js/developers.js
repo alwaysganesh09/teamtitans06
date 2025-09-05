@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'K SHYAM',
             role: 'Backend Developer, Tester',
             image: 'images/shyam.jpg',
-            linkedin: 'https://www.linkedin.com/in/mourya-k-12345678/',
-            github: 'https://github.com/KShyam' // Placeholder, update as needed
+            linkedin: 'http://www.linkedin.com/in/shyam-sundar-22a0b2315',
+            github: 'https://github.com/shyamsundar1439' // Placeholder, update as needed
         }
     ];
 
