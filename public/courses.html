@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Free Certification Courses - Team Titans</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        rel="stylesheet"
+    />
 </head>
 <body>
     <div id="page-loader" class="page-loader">
-  <div class="spinner"></div>
-</div>
+        <div class="spinner"></div>
+    </div>
     <nav class="navbar glass">
         <div class="nav-container">
             <div class="nav-logo">
@@ -44,7 +47,9 @@
         <section class="page-header">
             <div class="container">
                 <h1 class="page-title">Free Certification Courses</h1>
-                <p class="page-subtitle">Learn new technologies and earn certificates to advance your career</p>
+                <p class="page-subtitle">
+                    Learn new technologies and earn certificates to advance your career
+                </p>
             </div>
         </section>
 
@@ -52,43 +57,65 @@
             <div class="container">
                 <div class="flex-between mb-3">
                     <div class="search-container">
-                        <input type="text" id="courseSearch" class="form-input" placeholder="Search courses..." style="max-width: 300px;">
+                        <input
+                            type="text"
+                            id="courseSearch"
+                            class="form-input"
+                            placeholder="Search courses..."
+                            style="max-width: 300px"
+                        />
                     </div>
                     <div class="filter-container flex gap-2">
-                        <select id="levelFilter" class="form-select" style="max-width: 150px;">
+                        <select
+                            id="levelFilter"
+                            class="form-select"
+                            style="max-width: 150px"
+                        >
                             <option value="">All Levels</option>
                             <option value="beginner">Beginner</option>
                             <option value="intermediate">Intermediate</option>
                             <option value="advanced">Advanced</option>
                         </select>
-                        <select id="durationFilter" class="form-select" style="max-width: 150px;">
+                        <select
+                            id="durationFilter"
+                            class="form-select"
+                            style="max-width: 150px"
+                        >
                             <option value="">All Durations</option>
-                            <option value="short">Short (< 10h)</option>
+                            <option value="short">Short (&lt; 10h)</option>
                             <option value="medium">Medium (10-30h)</option>
-                            <option value="long">Long (> 30h)</option>
+                            <option value="long">Long (&gt; 30h)</option>
                         </select>
                     </div>
+
                 </div>
 
-                <div id="coursesGrid" class="grid grid-2">
-                    </div>
+                <div id="coursesGrid" class="grid grid-2"></div>
 
                 <div id="noCourses" class="text-center mt-3 hidden">
                     <div class="card">
-                        <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                        <i
+                            class="fas fa-graduation-cap"
+                            style="
+                                font-size: 3rem;
+                                color: var(--text-secondary);
+                                margin-bottom: 1rem;
+                            "
+                        ></i>
                         <h3>No Courses Found</h3>
-                        <p class="text-secondary">No courses match your current search criteria.</p>
+                        <p class="text-secondary">
+                            No courses match your current search criteria.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <div id="courseModal" class="modal">
+    <div id="courseModal" class="modal" style="display: none;">
         <div class="modal-content">
             <button class="modal-close">&times;</button>
-            <div id="courseModalContent">
-                </div>
+            <div id="courseModalContent"></div>
         </div>
     </div>
 
@@ -146,7 +173,8 @@
                     console.error('Error fetching courses:', error);
                     const grid = document.getElementById('coursesGrid');
                     if (grid) {
-                        grid.innerHTML = '<div class="text-center text-muted mt-3">Failed to load courses. Please check the server connection.</div>';
+                        grid.innerHTML =
+                            '<div class="text-center text-muted mt-3">Failed to load courses. Please check the server connection.</div>';
                     }
                 }
             }
@@ -167,6 +195,21 @@
                 if (durationFilter) {
                     durationFilter.addEventListener('change', () => this.renderCourses());
                 }
+
+                // Modal close logic
+                const courseModal = document.getElementById('courseModal');
+                const closeBtn = document.querySelector('#courseModal .modal-close');
+                if (courseModal && closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        courseModal.style.display = 'none';
+                    });
+                }
+                // Optional: click on modal backdrop closes modal
+                window.addEventListener('click', e => {
+                    if (e.target === courseModal) {
+                        courseModal.style.display = 'none';
+                    }
+                });
             }
 
             renderCourses() {
@@ -184,20 +227,27 @@
 
                 noCourses?.classList.add('hidden');
 
-                grid.innerHTML = courses.map(course => `
+                grid.innerHTML = courses
+                    .map(
+                        course => `
                     <div class="card course-card" data-course-id="${course._id}">
                         <div class="course-image" style="width: 100%; height: 200px; background-image: url('${course.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 1rem;"></div>
                         
                         <div class="course-header">
                             <div class="course-badges">
-                                <span class="level-badge level-${course.level}">${this.formatLevel(course.level)}</span>
+                                <span class="level-badge level-${course.level}">${this.formatLevel(
+                            course.level
+                        )}</span>
                                 <span class="duration-badge">${course.duration}</span>
                             </div>
                         </div>
                         
                         <div class="card-content">
                             <h3 class="card-title">${course.title}</h3>
-                            <p class="course-description">${course.description.substring(0, 120)}...</p>
+                            <p class="course-description">${course.description.substring(
+                                0,
+                                120
+                            )}...</p>
                             
                             <div class="course-instructor">
                                 <i class="fas fa-user-tie"></i>
@@ -205,21 +255,37 @@
                             </div>
                             
                             <div class="course-skills">
-                                ${course.skills.slice(0, 3).map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
-                                ${course.skills.length > 3 ? `<span class="skill-tag">+${course.skills.length - 3}</span>` : ''}
+                                ${course.skills
+                                    .slice(0, 3)
+                                    .map(skill => `<span class="skill-tag">${skill}</span>`)
+                                    .join('')}
+                                ${
+                                    course.skills.length > 3
+                                        ? `<span class="skill-tag">+${course.skills.length - 3}</span>`
+                                        : ''
+                                }
                             </div>
                         </div>
                         
                         <div class="card-actions">
-                            <button class="btn btn-primary btn-small" onclick="coursesManager.showCourseDetails('${course._id}')">
+                            <button
+                                class="btn btn-primary btn-small"
+                                onclick="coursesManager.showCourseDetails('${course._id}')"
+                            >
                                 <i class="fas fa-info-circle"></i> View Details
                             </button>
-                            <a href="${course.certificateUrl}" target="_blank" class="btn btn-secondary btn-small">
+                            <a
+                                href="${course.certificateUrl}"
+                                target="_blank"
+                                class="btn btn-secondary btn-small"
+                            >
                                 <i class="fas fa-certificate"></i> Get Certified
                             </a>
                         </div>
                     </div>
-                `).join('');
+                `
+                    )
+                    .join('');
 
                 this.addCourseStyles();
             }
@@ -248,14 +314,13 @@
             }
 
             getFilteredCourses() {
-                // Update: Filters are now applied to the locally stored 'this.courses' array
                 let filteredCourses = [...this.courses];
                 const searchTerm = document.getElementById('courseSearch')?.value.toLowerCase() || '';
                 const levelFilter = document.getElementById('levelFilter')?.value || '';
                 const durationFilter = document.getElementById('durationFilter')?.value || '';
 
                 if (searchTerm) {
-                    filteredCourses = filteredCourses.filter(course => 
+                    filteredCourses = filteredCourses.filter(course =>
                         course.title.toLowerCase().includes(searchTerm) ||
                         course.description.toLowerCase().includes(searchTerm) ||
                         course.instructor.toLowerCase().includes(searchTerm) ||
@@ -272,15 +337,21 @@
                         const duration = parseInt(course.duration);
                         if (isNaN(duration)) return true; // Handle courses with non-numeric duration
                         switch (durationFilter) {
-                            case 'short': return duration < 10;
-                            case 'medium': return duration >= 10 && duration <= 30;
-                            case 'long': return duration > 30;
-                            default: return true;
+                            case 'short':
+                                return duration < 10;
+                            case 'medium':
+                                return duration >= 10 && duration <= 30;
+                            case 'long':
+                                return duration > 30;
+                            default:
+                                return true;
                         }
                     });
                 }
                 // Sort by creation date (newest first)
-                return filteredCourses.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                return filteredCourses.sort(
+                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                );
             }
 
             formatLevel(level) {
@@ -288,7 +359,6 @@
             }
 
             showCourseDetails(courseId) {
-                // Update: Now finds course by its MongoDB _id
                 const course = this.courses.find(c => c._id === courseId);
                 if (!course) return;
 
@@ -302,7 +372,9 @@
                         <div class="course-header">
                             <h2>${course.title}</h2>
                             <div class="course-badges">
-                                <span class="level-badge level-${course.level}">${this.formatLevel(course.level)}</span>
+                                <span class="level-badge level-${course.level}">${this.formatLevel(
+                    course.level
+                )}</span>
                                 <span class="duration-badge">${course.duration}</span>
                             </div>
                         </div>
@@ -319,14 +391,21 @@
                         <div class="course-modules">
                             <h4>Course Modules</h4>
                             <ul class="modules-list">
-                                ${course.modules.map(module => `<li><i class="fas fa-check-circle"></i> ${module}</li>`).join('')}
+                                ${course.modules
+                                    .map(
+                                        module =>
+                                            `<li><i class="fas fa-check-circle"></i> ${module}</li>`
+                                    )
+                                    .join('')}
                             </ul>
                         </div>
                         
                         <div class="course-skills-detail">
                             <h4>Skills You'll Learn</h4>
                             <div class="skills-list">
-                                ${course.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                                ${course.skills
+                                    .map(skill => `<span class="skill-tag">${skill}</span>`)
+                                    .join('')}
                             </div>
                         </div>
                         
@@ -338,7 +417,7 @@
                         
                         <div class="course-meta">
                             <small class="text-muted">
-                                Added: ${new Date(course.createdAt).toLocaleDateString()}<br>
+                                Added: ${new Date(course.createdAt).toLocaleDateString()}<br />
                                 Last Updated: ${new Date(course.updatedAt).toLocaleDateString()}
                             </small>
                         </div>
@@ -346,7 +425,7 @@
                 `;
 
                 this.addDetailStyles();
-                ModalManager.show('courseModal');
+                document.getElementById('courseModal').style.display = 'block';
             }
 
             addDetailStyles() {
@@ -373,10 +452,9 @@
             }
         }
 
-        // Initialize courses manager
-        let coursesManager;
+        // Initialize courses manager globally for inline onclick buttons
         document.addEventListener('DOMContentLoaded', () => {
-            coursesManager = new CoursesManager();
+            window.coursesManager = new CoursesManager();
         });
     </script>
 </body>
