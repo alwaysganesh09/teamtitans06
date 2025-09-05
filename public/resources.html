@@ -64,7 +64,7 @@
                 </div>
 
                 <div id="resourcesGrid" class="grid grid-3">
-                    </div>
+                </div>
 
                 <div id="noResources" class="text-center mt-3 hidden">
                     <div class="card">
@@ -108,8 +108,9 @@
         // Resources Manager
         class ResourcesManager {
             constructor() {
-                this.apiBaseUrl = 'http://localhost:5000/api';
-                this.resources = [];
+                // API URL to fetch data from the backend
+                this.apiBaseUrl = '/api'; // Corrected URL
+                this.resources = []; // Stores fetched resources for filtering
                 this.init();
             }
 
@@ -292,7 +293,7 @@
                 const categoryFilter = document.getElementById('categoryFilter')?.value || '';
 
                 if (searchTerm) {
-                    filteredResources = filteredResources.filter(resource => 
+                    filteredResources = filteredResources.filter(resource =>
                         resource.title.toLowerCase().includes(searchTerm) ||
                         resource.description.toLowerCase().includes(searchTerm) ||
                         resource.category.toLowerCase().includes(searchTerm)
@@ -318,7 +319,7 @@
         });
     </script>
     <div id="page-loader" class="page-loader">
-  <div class="spinner"></div>
-</div>
+        <div class="spinner"></div>
+    </div>
 </body>
 </html>

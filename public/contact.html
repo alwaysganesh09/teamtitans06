@@ -1,492 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Team Titans</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Team Titans</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div id="page-loader" class="page-loader">
-  <div class="spinner"></div>
+    <div id="page-loader" class="page-loader">
+  <div class="spinner"></div>
 </div>
-    <nav class="navbar glass">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="titans-logo">
-                    <span class="logo-text">TITANS</span>
-                    <div class="logo-glow"></div>
-                </div>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="resources.html" class="nav-link">Resources</a></li>
-                <li><a href="courses.html" class="nav-link">Courses</a></li>
-                <li><a href="contact.html" class="nav-link active">Contact</a></li>
-                <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="titans-logo">
+                    <span class="logo-text">TITANS</span>
+                    <div class="logo-glow"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <main class="page">
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-title">Get In Touch</h1>
-                <p class="page-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-            </div>
-        </section>
+    <main class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Get In Touch</h1>
+                <p class="page-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            </div>
+        </section>
 
-        <section class="page-content">
-            <div class="container">
-                <div class="grid grid-2" style="gap: 4rem;">
-                    <div class="contact-form-section">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Send us a message</h3>
-                                <p class="card-subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
-                            </div>
-                            
-                            <form id="contactForm" class="contact-form">
-                                <div class="form-group">
-                                    <label for="name" class="form-label">Full Name *</label>
-                                    <input type="text" id="name" name="name" class="form-input" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="email" class="form-label">Email Address *</label>
-                                    <input type="email" id="email" name="email" class="form-input" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="subject" class="form-label">Subject *</label>
-                                    <select id="subject" name="subject" class="form-select" required>
-                                        <option value="">Select a subject</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="project">Project Collaboration</option>
-                                        <option value="course">Course Question</option>
-                                        <option value="technical">Technical Support</option>
-                                        <option value="feedback">Feedback</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="message" class="form-label">Message *</label>
-                                    <textarea id="message" name="message" class="form-textarea" rows="6" placeholder="Tell us about your project, question, or how we can help you..." required></textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="newsletter" name="newsletter">
-                                        <span class="checkmark"></span>
-                                        Subscribe to our newsletter for updates and new resources
-                                    </label>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-primary" id="submitBtn">
-                                    <span class="btn-text">Send Message</span>
-                                    <span class="btn-loading hidden">
-                                        <span class="loading"></span>
-                                        Sending...
-                                    </span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-info-section">
-                        <div class="contact-info">
-                            <h3>Contact Information</h3>
-                            <p class="mb-3">Ready to start your next project or have questions about our services? We're here to help!</p>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h4>Email</h4>
-                                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9a1aca5a5a689bdaca8a4bda0bda8a7bae7adacbf">[email&#160;protected]</a></p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h4>Phone</h4>
-                                    <p>+1 (555) 123-4567</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h4>Location</h4>
-                                    <p>San Francisco, CA<br>Remote Worldwide</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h4>Response Time</h4>
-                                    <p>Within 24 hours<br>Monday - Friday</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="social-links">
-                            <h4>Follow Us</h4>
-                            <div class="social-icons">
-                                <a href="#" class="social-icon">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="social-icon">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="social-icon">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="social-icon">
-                                    <i class="fab fa-discord"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        <section class="page-content">
+            <div class="container">
+                <div class="grid grid-2" style="gap: 4rem;">
+                    <div class="contact-form-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Send us a message</h3>
+                                <p class="card-subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
+                            </div>
+                            
+                            <form id="contactForm" class="contact-form">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" id="name" name="name" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" id="email" name="email" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject" class="form-label">Subject *</label>
+                                    <select id="subject" name="subject" class="form-select" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="project">Project Collaboration</option>
+                                        <option value="course">Course Question</option>
+                                        <option value="technical">Technical Support</option>
+                                        <option value="feedback">Feedback</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Message *</label>
+                                    <textarea id="message" name="message" class="form-textarea" rows="6" placeholder="Tell us about your project, question, or how we can help you..." required></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="newsletter" name="newsletter">
+                                        <span class="checkmark"></span>
+                                        Subscribe to our newsletter for updates and new resources
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <span class="btn-text">Send Message</span>
+                                    <span class="btn-loading hidden">
+                                        <span class="loading"></span>
+                                        Sending...
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-section">
+                        <div class="contact-info">
+                            <h3>Contact Information</h3>
+                            <p class="mb-3">Ready to start your next project or have questions about our services? We're here to help!</p>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9a1aca5a5a689bdaca8a4bda0bda8a7bae7adacbf">[email&#160;protected]</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Location</h4>
+                                    <p>San Francisco, CA<br>Remote Worldwide</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Response Time</h4>
+                                    <p>Within 24 hours<br>Monday - Friday</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <h4>Follow Us</h4>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer class="footer glass">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">TITANS</span>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="resources.html">Resources</a>
-                    <a href="courses.html">Courses</a>
-                    <a href="developers.html">Developers</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Team Titans. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">TITANS</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="courses.html">Courses</a>
+                    <a href="developers.html">Developers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Team Titans. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/script.js"></script>
-    <script>
-        // Contact Manager
-        class ContactManager {
-            constructor() {
-                // Update: No longer uses local storage, so we remove the crudManager property
-                this.apiBaseUrl = 'http://localhost:5000/api';
-                this.init();
-            }
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/script.js"></script>
+    <script>
+        // Contact Manager
+        class ContactManager {
+            constructor() {
+                // Update: No longer uses local storage, so we remove the crudManager property
+                this.apiBaseUrl = '/api';
+                this.init();
+            }
 
-            init() {
-                this.setupForm();
-                this.addContactStyles();
-            }
+            init() {
+                this.setupForm();
+                this.addContactStyles();
+            }
 
-            setupForm() {
-                const form = document.getElementById('contactForm');
-                if (form) {
-                    form.addEventListener('submit', (e) => this.handleSubmit(e));
-                }
-            }
+            setupForm() {
+                const form = document.getElementById('contactForm');
+                if (form) {
+                    form.addEventListener('submit', (e) => this.handleSubmit(e));
+                }
+            }
 
-            async handleSubmit(e) {
-                e.preventDefault();
-                
-                const form = e.target;
-                const submitBtn = document.getElementById('submitBtn');
-                const btnText = submitBtn.querySelector('.btn-text');
-                const btnLoading = submitBtn.querySelector('.btn-loading');
-                
-                // Clear previous errors
-                FormValidator.clearAllErrors('contactForm');
-                
-                // Get form data
-                const formData = new FormData(form);
-                const data = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    subject: formData.get('subject'),
-                    message: formData.get('message'),
-                };
-                
-                // Validate form
-                let isValid = true;
-                
-                if (!FormValidator.validateRequired(data.name)) {
-                    FormValidator.showFieldError('name', 'Name is required');
-                    isValid = false;
-                }
-                
-                if (!FormValidator.validateRequired(data.email)) {
-                    FormValidator.showFieldError('email', 'Email is required');
-                    isValid = false;
-                } else if (!FormValidator.validateEmail(data.email)) {
-                    FormValidator.showFieldError('email', 'Please enter a valid email address');
-                    isValid = false;
-                }
-                
-                if (!FormValidator.validateRequired(data.subject)) {
-                    FormValidator.showFieldError('subject', 'Please select a subject');
-                    isValid = false;
-                }
-                
-                if (!FormValidator.validateRequired(data.message)) {
-                    FormValidator.showFieldError('message', 'Message is required');
-                    isValid = false;
-                } else if (!FormValidator.validateMinLength(data.message, 10)) {
-                    FormValidator.showFieldError('message', 'Message must be at least 10 characters long');
-                    isValid = false;
-                }
-                
-                if (!isValid) {
-                    return;
-                }
-                
-                // Show loading state
-                submitBtn.disabled = true;
-                btnText.classList.add('hidden');
-                btnLoading.classList.remove('hidden');
-                
-                try {
-                    // Update: Now sending data to the backend API
-                    const response = await fetch(`${this.apiBaseUrl}/contacts`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data),
-                    });
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                const form = e.target;
+                const submitBtn = document.getElementById('submitBtn');
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoading = submitBtn.querySelector('.btn-loading');
+                
+                // Clear previous errors
+                FormValidator.clearAllErrors('contactForm');
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                };
+                
+                // Validate form
+                let isValid = true;
+                
+                if (!FormValidator.validateRequired(data.name)) {
+                    FormValidator.showFieldError('name', 'Name is required');
+                    isValid = false;
+                }
+                
+                if (!FormValidator.validateRequired(data.email)) {
+                    FormValidator.showFieldError('email', 'Email is required');
+                    isValid = false;
+                } else if (!FormValidator.validateEmail(data.email)) {
+                    FormValidator.showFieldError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                if (!FormValidator.validateRequired(data.subject)) {
+                    FormValidator.showFieldError('subject', 'Please select a subject');
+                    isValid = false;
+                }
+                
+                if (!FormValidator.validateRequired(data.message)) {
+                    FormValidator.showFieldError('message', 'Message is required');
+                    isValid = false;
+                } else if (!FormValidator.validateMinLength(data.message, 10)) {
+                    FormValidator.showFieldError('message', 'Message must be at least 10 characters long');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                btnText.classList.add('hidden');
+                btnLoading.classList.remove('hidden');
+                
+                try {
+                    // Update: Now sending data to the backend API
+                    const response = await fetch(`${this.apiBaseUrl}/contacts`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    });
 
-                    if (!response.ok) {
-                        throw new Error('Failed to send message.');
-                    }
-                    
-                    // Show success message
-                    AlertManager.show('Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
-                    
-                    // Reset form
-                    form.reset();
-                    
-                } catch (error) {
-                    AlertManager.show('Failed to send message. Please try again.', 'error');
-                } finally {
-                    // Reset button state
-                    submitBtn.disabled = false;
-                    btnText.classList.remove('hidden');
-                    btnLoading.classList.add('hidden');
-                }
-            }
+                    if (!response.ok) {
+                        throw new Error('Failed to send message.');
+                    }
+                    
+                    // Show success message
+                    AlertManager.show('Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                } catch (error) {
+                    AlertManager.show('Failed to send message. Please try again.', 'error');
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    btnText.classList.remove('hidden');
+                    btnLoading.classList.add('hidden');
+                }
+            }
 
-            addContactStyles() {
-                if (!document.getElementById('contact-styles')) {
-                    const style = document.createElement('style');
-                    style.id = 'contact-styles';
-                    style.textContent = `
-                        .contact-form-section {
-                            max-width: none;
-                        }
-                        
-                        .contact-info {
-                            margin-bottom: 2rem;
-                        }
-                        
-                        .contact-info h3 {
-                            font-size: 1.5rem;
-                            font-weight: 600;
-                            margin-bottom: 1rem;
-                            color: var(--text-primary);
-                        }
-                        
-                        .contact-item {
-                            display: flex;
-                            align-items: flex-start;
-                            gap: 1rem;
-                            margin-bottom: 2rem;
-                            padding: 1.5rem;
-                            background: var(--glass-bg);
-                            border: 1px solid var(--glass-border);
-                            border-radius: 12px;
-                            transition: all 0.3s ease;
-                        }
-                        
-                        .contact-item:hover {
-                            transform: translateY(-2px);
-                            box-shadow: 0 8px 25px var(--shadow-color);
-                        }
-                        
-                        .contact-icon {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 50px;
-                            height: 50px;
-                            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-                            border-radius: 12px;
-                            color: white;
-                            font-size: 1.25rem;
-                            flex-shrink: 0;
-                        }
-                        
-                        .contact-details h4 {
-                            font-size: 1.1rem;
-                            font-weight: 600;
-                            margin-bottom: 0.5rem;
-                            color: var(--text-primary);
-                        }
-                        
-                        .contact-details p {
-                            color: var(--text-secondary);
-                            margin: 0;
-                            line-height: 1.5;
-                        }
-                        
-                        .social-links {
-                            padding: 2rem;
-                            background: var(--glass-bg);
-                            border: 1px solid var(--glass-border);
-                            border-radius: 16px;
-                            text-align: center;
-                        }
-                        
-                        .social-links h4 {
-                            font-size: 1.25rem;
-                            font-weight: 600;
-                            margin-bottom: 1.5rem;
-                            color: var(--text-primary);
-                        }
-                        
-                        .social-icons {
-                            display: flex;
-                            justify-content: center;
-                            gap: 1rem;
-                        }
-                        
-                        .social-icon {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 50px;
-                            height: 50px;
-                            background: var(--glass-bg);
-                            border: 1px solid var(--glass-border);
-                            border-radius: 50%;
-                            color: var(--text-primary);
-                            text-decoration: none;
-                            font-size: 1.25rem;
-                            transition: all 0.3s ease;
-                        }
-                        
-                        .social-icon:hover {
-                            background: var(--primary-color);
-                            color: white;
-                            transform: translateY(-3px);
-                        }
-                        
-                        .checkbox-label {
-                            display: flex;
-                            align-items: flex-start;
-                            gap: 0.75rem;
-                            cursor: pointer;
-                            font-size: 0.9rem;
-                            line-height: 1.5;
-                        }
-                        
-                        .checkbox-label input[type="checkbox"] {
-                            display: none;
-                        }
-                        
-                        .checkmark {
-                            width: 20px;
-                            height: 20px;
-                            background: var(--glass-bg);
-                            border: 2px solid var(--border-color);
-                            border-radius: 4px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            transition: all 0.3s ease;
-                            flex-shrink: 0;
-                            margin-top: 2px;
-                        }
-                        
-                        .checkbox-label input[type="checkbox"]:checked + .checkmark {
-                            background: var(--primary-color);
-                            border-color: var(--primary-color);
-                        }
-                        
-                        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
-                            content: '✓';
-                            color: white;
-                            font-weight: bold;
-                            font-size: 14px;
-                        }
-                        
-                        .btn-loading {
-                            display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                        }
-                        
-                        @media (max-width: 768px) {
-                            .grid-2 {
-                                grid-template-columns: 1fr;
-                                gap: 2rem;
-                            }
-                            
-                            .contact-item {
-                                flex-direction: column;
-                                text-align: center;
-                            }
-                            
-                            .social-icons {
-                                flex-wrap: wrap;
-                            }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                }
-            }
-        }
+            addContactStyles() {
+                if (!document.getElementById('contact-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'contact-styles';
+                    style.textContent = `
+                        .contact-form-section {
+                            max-width: none;
+                        }
+                        
+                        .contact-info {
+                            margin-bottom: 2rem;
+                        }
+                        
+                        .contact-info h3 {
+                            font-size: 1.5rem;
+                            font-weight: 600;
+                            margin-bottom: 1rem;
+                            color: var(--text-primary);
+                        }
+                        
+                        .contact-item {
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 1rem;
+                            margin-bottom: 2rem;
+                            padding: 1.5rem;
+                            background: var(--glass-bg);
+                            border: 1px solid var(--glass-border);
+                            border-radius: 12px;
+                            transition: all 0.3s ease;
+                        }
+                        
+                        .contact-item:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 8px 25px var(--shadow-color);
+                        }
+                        
+                        .contact-icon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 50px;
+                            height: 50px;
+                            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+                            border-radius: 12px;
+                            color: white;
+                            font-size: 1.25rem;
+                            flex-shrink: 0;
+                        }
+                        
+                        .contact-details h4 {
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            margin-bottom: 0.5rem;
+                            color: var(--text-primary);
+                        }
+                        
+                        .contact-details p {
+                            color: var(--text-secondary);
+                            margin: 0;
+                            line-height: 1.5;
+                        }
+                        
+                        .social-links {
+                            padding: 2rem;
+                            background: var(--glass-bg);
+                            border: 1px solid var(--glass-border);
+                            border-radius: 16px;
+                            text-align: center;
+                        }
+                        
+                        .social-links h4 {
+                            font-size: 1.25rem;
+                            font-weight: 600;
+                            margin-bottom: 1.5rem;
+                            color: var(--text-primary);
+                        }
+                        
+                        .social-icons {
+                            display: flex;
+                            justify-content: center;
+                            gap: 1rem;
+                        }
+                        
+                        .social-icon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 50px;
+                            height: 50px;
+                            background: var(--glass-bg);
+                            border: 1px solid var(--glass-border);
+                            border-radius: 50%;
+                            color: var(--text-primary);
+                            text-decoration: none;
+                            font-size: 1.25rem;
+                            transition: all 0.3s ease;
+                        }
+                        
+                        .social-icon:hover {
+                            background: var(--primary-color);
+                            color: white;
+                            transform: translateY(-3px);
+                        }
+                        
+                        .checkbox-label {
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 0.75rem;
+                            cursor: pointer;
+                            font-size: 0.9rem;
+                            line-height: 1.5;
+                        }
+                        
+                        .checkbox-label input[type="checkbox"] {
+                            display: none;
+                        }
+                        
+                        .checkmark {
+                            width: 20px;
+                            height: 20px;
+                            background: var(--glass-bg);
+                            border: 2px solid var(--border-color);
+                            border-radius: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            transition: all 0.3s ease;
+                            flex-shrink: 0;
+                            margin-top: 2px;
+                        }
+                        
+                        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+                            background: var(--primary-color);
+                            border-color: var(--primary-color);
+                        }
+                        
+                        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+                            content: '✓';
+                            color: white;
+                            font-weight: bold;
+                            font-size: 14px;
+                        }
+                        
+                        .btn-loading {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .grid-2 {
+                                grid-template-columns: 1fr;
+                                gap: 2rem;
+                            }
+                            
+                            .contact-item {
+                                flex-direction: column;
+                                text-align: center;
+                            }
+                            
+                            .social-icons {
+                                flex-wrap: wrap;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+        }
 
-        // Initialize contact manager
-        let contactManager;
-        document.addEventListener('DOMContentLoaded', () => {
-            contactManager = new ContactManager();
-        });
-    </script>
+        // Initialize contact manager
+        let contactManager;
+        document.addEventListener('DOMContentLoaded', () => {
+            contactManager = new ContactManager();
+        });
+    </script>
 </body>
 </html>

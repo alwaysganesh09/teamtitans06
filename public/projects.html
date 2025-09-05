@@ -1,367 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Team Titans</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Team Titans</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar glass">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="titans-logo">
-                    <span class="logo-text">TITANS</span>
-                    <div class="logo-glow"></div>
-                </div>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="projects.html" class="nav-link active">Projects</a></li>
-                <li><a href="resources.html" class="nav-link">Resources</a></li>
-                <li><a href="courses.html" class="nav-link">Courses</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="titans-logo">
+                    <span class="logo-text">TITANS</span>
+                    <div class="logo-glow"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <main class="page">
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-title">Our Projects</h1>
-                <p class="page-subtitle">Innovative solutions built with cutting-edge technology</p>
-            </div>
-        </section>
+    <main class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Our Projects</h1>
+                <p class="page-subtitle">Innovative solutions built with cutting-edge technology</p>
+            </div>
+        </section>
 
-        <section class="page-content">
-            <div class="container">
-                <div class="flex-between mb-3">
-                    <div class="search-container">
-                        <input type="text" id="projectSearch" class="form-input" placeholder="Search projects..." style="max-width: 300px;">
-                    </div>
-                    <div class="filter-container">
-                        <select id="statusFilter" class="form-select" style="max-width: 200px;">
-                            <option value="">All Status</option>
-                            <option value="completed">Completed</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="planning">Planning</option>
-                        </select>
-                    </div>
-                </div>
+        <section class="page-content">
+            <div class="container">
+                <div class="flex-between mb-3">
+                    <div class="search-container">
+                        <input type="text" id="projectSearch" class="form-input" placeholder="Search projects..." style="max-width: 300px;">
+                    </div>
+                    <div class="filter-container">
+                        <select id="statusFilter" class="form-select" style="max-width: 200px;">
+                            <option value="">All Status</option>
+                            <option value="completed">Completed</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="planning">Planning</option>
+                        </select>
+                    </div>
+                </div>
 
-                <div id="projectsGrid" class="grid grid-3">
-                    </div>
+                <div id="projectsGrid" class="grid grid-3">
+                    </div>
 
-                <div id="noProjects" class="text-center mt-3 hidden">
-                    <div class="card">
-                        <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
-                        <h3>No Projects Found</h3>
-                        <p class="text-secondary">No projects match your current search criteria.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                <div id="noProjects" class="text-center mt-3 hidden">
+                    <div class="card">
+                        <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                        <h3>No Projects Found</h3>
+                        <p class="text-secondary">No projects match your current search criteria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div id="projectModalContent">
-                </div>
-        </div>
-    </div>
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="projectModalContent">
+                </div>
+        </div>
+    </div>
 
-    <footer class="footer glass">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">TITANS</span>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="resources.html">Resources</a>
-                    <a href="courses.html">Courses</a>
-                    <a href="developers.html">Developers</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Team Titans. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">TITANS</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="courses.html">Courses</a>
+                    <a href="developers.html">Developers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Team Titans. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script src="js/script.js"></script>
-    <script>
-        // Projects Manager
-        class ProjectsManager {
-            constructor() {
-                // API URL to fetch data from the backend
-                this.apiBaseUrl = 'http://localhost:5000/api';
-                this.projects = []; // Stores fetched projects for filtering
-                this.init();
-            }
+    <script src="js/script.js"></script>
+    <script>
+        // Projects Manager
+        class ProjectsManager {
+            constructor() {
+                // API URL to fetch data from the backend
+                this.apiBaseUrl = '/api';
+                this.projects = []; // Stores fetched projects for filtering
+                this.init();
+            }
 
-            init() {
-                this.setupEventListeners();
-                this.fetchAndRenderProjects();
-            }
+            init() {
+                this.setupEventListeners();
+                this.fetchAndRenderProjects();
+            }
 
-            async fetchAndRenderProjects() {
-                try {
-                    const response = await fetch(`${this.apiBaseUrl}/projects`);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    this.projects = await response.json();
-                    this.renderProjects();
-                } catch (error) {
-                    console.error('Error fetching projects:', error);
-                    const grid = document.getElementById('projectsGrid');
-                    if (grid) {
-                        grid.innerHTML = '<div class="text-center text-muted mt-3">Failed to load projects. Please check the server connection.</div>';
-                    }
-                }
-            }
+            async fetchAndRenderProjects() {
+                try {
+                    const response = await fetch(`${this.apiBaseUrl}/projects`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    this.projects = await response.json();
+                    this.renderProjects();
+                } catch (error) {
+                    console.error('Error fetching projects:', error);
+                    const grid = document.getElementById('projectsGrid');
+                    if (grid) {
+                        grid.innerHTML = '<div class="text-center text-muted mt-3">Failed to load projects. Please check the server connection.</div>';
+                    }
+                }
+            }
 
-            setupEventListeners() {
-                const searchInput = document.getElementById('projectSearch');
-                const statusFilter = document.getElementById('statusFilter');
+            setupEventListeners() {
+                const searchInput = document.getElementById('projectSearch');
+                const statusFilter = document.getElementById('statusFilter');
 
-                if (searchInput) {
-                    searchInput.addEventListener('input', () => this.renderProjects());
-                }
+                if (searchInput) {
+                    searchInput.addEventListener('input', () => this.renderProjects());
+                }
 
-                if (statusFilter) {
-                    statusFilter.addEventListener('change', () => this.renderProjects());
-                }
-            }
+                if (statusFilter) {
+                    statusFilter.addEventListener('change', () => this.renderProjects());
+                }
+            }
 
-            renderProjects() {
-                const projects = this.getFilteredProjects();
-                const grid = document.getElementById('projectsGrid');
-                const noProjects = document.getElementById('noProjects');
+            renderProjects() {
+                const projects = this.getFilteredProjects();
+                const grid = document.getElementById('projectsGrid');
+                const noProjects = document.getElementById('noProjects');
 
-                if (!grid) return;
+                if (!grid) return;
 
-                if (projects.length === 0) {
-                    grid.innerHTML = '';
-                    noProjects?.classList.remove('hidden');
-                    return;
-                }
+                if (projects.length === 0) {
+                    grid.innerHTML = '';
+                    noProjects?.classList.remove('hidden');
+                    return;
+                }
 
-                noProjects?.classList.add('hidden');
+                noProjects?.classList.add('hidden');
 
-                grid.innerHTML = projects.map(project => `
-                    <div class="card flip-card" data-project-id="${project._id}">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="project-image" style="width: 100%; height: 200px; background-image: url('${project.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 1rem;"></div>
-                                <div class="card-header">
-                                    <h3 class="card-title">${project.title}</h3>
-                                    <span class="project-status status-${project.status}">${this.formatStatus(project.status)}</span>
-                                </div>
-                                <div class="project-tech">
-                                    ${project.technologies.slice(0, 3).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                                    ${project.technologies.length > 3 ? `<span class="tech-tag">+${project.technologies.length - 3}</span>` : ''}
-                                </div>
-                            </div>
-                            <div class="flip-card-back">
-                                <h3>${project.title}</h3>
-                                <p>${project.description.substring(0, 120)}...</p>
-                                <div class="card-actions">
-                                    <button class="btn btn-primary btn-small" onclick="projectsManager.showProjectDetails('${project._id}')">
-                                        <i class="fas fa-eye"></i> View Details
-                                    </button>
-                                    ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-secondary btn-small"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
+                grid.innerHTML = projects.map(project => `
+                    <div class="card flip-card" data-project-id="${project._id}">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="project-image" style="width: 100%; height: 200px; background-image: url('${project.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 1rem;"></div>
+                                <div class="card-header">
+                                    <h3 class="card-title">${project.title}</h3>
+                                    <span class="project-status status-${project.status}">${this.formatStatus(project.status)}</span>
+                                </div>
+                                <div class="project-tech">
+                                    ${project.technologies.slice(0, 3).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                                    ${project.technologies.length > 3 ? `<span class="tech-tag">+${project.technologies.length - 3}</span>` : ''}
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>${project.title}</h3>
+                                <p>${project.description.substring(0, 120)}...</p>
+                                <div class="card-actions">
+                                    <button class="btn btn-primary btn-small" onclick="projectsManager.showProjectDetails('${project._id}')">
+                                        <i class="fas fa-eye"></i> View Details
+                                    </button>
+                                    ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-secondary btn-small"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
 
-                this.addProjectStyles();
-            }
+                this.addProjectStyles();
+            }
 
-            addProjectStyles() {
-                if (!document.getElementById('project-styles')) {
-                    const style = document.createElement('style');
-                    style.id = 'project-styles';
-                    style.textContent = `
-                        .project-status {
-                            padding: 0.25rem 0.75rem;
-                            border-radius: 20px;
-                            font-size: 0.75rem;
-                            font-weight: 600;
-                            text-transform: uppercase;
-                        }
-                        .status-completed {
-                            background: rgba(34, 197, 94, 0.2);
-                            color: #22c55e;
-                        }
-                        .status-in-progress {
-                            background: rgba(59, 130, 246, 0.2);
-                            color: #3b82f6;
-                        }
-                        .status-planning {
-                            background: rgba(245, 158, 11, 0.2);
-                            color: #f59e0b;
-                        }
-                        .project-tech {
-                            display: flex;
-                            flex-wrap: wrap;
-                            gap: 0.5rem;
-                            margin-top: 1rem;
-                        }
-                        .tech-tag {
-                            padding: 0.25rem 0.5rem;
-                            background: var(--glass-bg);
-                            border: 1px solid var(--glass-border);
-                            border-radius: 12px;
-                            font-size: 0.75rem;
-                            color: var(--text-secondary);
-                        }
-                        .flip-card {
-                            height: 350px;
-                        }
-                        .flip-card-front, .flip-card-back {
-                            padding: 1.5rem;
-                        }
-                        .card-header {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: flex-start;
-                            margin-bottom: 1rem;
-                        }
-                        .card-header h3 {
-                            margin: 0;
-                            flex: 1;
-                            margin-right: 1rem;
-                        }
-                    `;
-                    document.head.appendChild(style);
-                }
-            }
+            addProjectStyles() {
+                if (!document.getElementById('project-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'project-styles';
+                    style.textContent = `
+                        .project-status {
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 20px;
+                            font-size: 0.75rem;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                        }
+                        .status-completed {
+                            background: rgba(34, 197, 94, 0.2);
+                            color: #22c55e;
+                        }
+                        .status-in-progress {
+                            background: rgba(59, 130, 246, 0.2);
+                            color: #3b82f6;
+                        }
+                        .status-planning {
+                            background: rgba(245, 158, 11, 0.2);
+                            color: #f59e0b;
+                        }
+                        .project-tech {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 0.5rem;
+                            margin-top: 1rem;
+                        }
+                        .tech-tag {
+                            padding: 0.25rem 0.5rem;
+                            background: var(--glass-bg);
+                            border: 1px solid var(--glass-border);
+                            border-radius: 12px;
+                            font-size: 0.75rem;
+                            color: var(--text-secondary);
+                        }
+                        .flip-card {
+                            height: 350px;
+                        }
+                        .flip-card-front, .flip-card-back {
+                            padding: 1.5rem;
+                        }
+                        .card-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: flex-start;
+                            margin-bottom: 1rem;
+                        }
+                        .card-header h3 {
+                            margin: 0;
+                            flex: 1;
+                            margin-right: 1rem;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
 
-            getFilteredProjects() {
-                // Filtering is now done on the locally stored `this.projects` array
-                let filteredProjects = [...this.projects];
-                const searchTerm = document.getElementById('projectSearch')?.value.toLowerCase() || '';
-                const statusFilter = document.getElementById('statusFilter')?.value || '';
+            getFilteredProjects() {
+                // Filtering is now done on the locally stored `this.projects` array
+                let filteredProjects = [...this.projects];
+                const searchTerm = document.getElementById('projectSearch')?.value.toLowerCase() || '';
+                const statusFilter = document.getElementById('statusFilter')?.value || '';
 
-                if (searchTerm) {
-                    filteredProjects = filteredProjects.filter(project => 
-                        project.title.toLowerCase().includes(searchTerm) ||
-                        project.description.toLowerCase().includes(searchTerm) ||
-                        (project.technologies && project.technologies.some(tech => tech.toLowerCase().includes(searchTerm)))
-                    );
-                }
+                if (searchTerm) {
+                    filteredProjects = filteredProjects.filter(project => 
+                        project.title.toLowerCase().includes(searchTerm) ||
+                        project.description.toLowerCase().includes(searchTerm) ||
+                        (project.technologies && project.technologies.some(tech => tech.toLowerCase().includes(searchTerm)))
+                    );
+                }
 
-                if (statusFilter) {
-                    filteredProjects = filteredProjects.filter(project => project.status === statusFilter);
-                }
+                if (statusFilter) {
+                    filteredProjects = filteredProjects.filter(project => project.status === statusFilter);
+                }
 
-                // Sort by creation date (newest first)
-                return filteredProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            }
+                // Sort by creation date (newest first)
+                return filteredProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            }
 
-            formatStatus(status) {
-                return status.split('-').map(word => 
-                    word.charAt(0).toUpperCase() + word.slice(1)
-                ).join(' ');
-            }
+            formatStatus(status) {
+                return status.split('-').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ');
+            }
 
-            showProjectDetails(projectId) {
-                // Find project by its MongoDB `_id`
-                const project = this.projects.find(p => p._id === projectId);
-                if (!project) return;
+            showProjectDetails(projectId) {
+                // Find project by its MongoDB `_id`
+                const project = this.projects.find(p => p._id === projectId);
+                if (!project) return;
 
-                const modalContent = document.getElementById('projectModalContent');
-                if (!modalContent) return;
+                const modalContent = document.getElementById('projectModalContent');
+                if (!modalContent) return;
 
-                modalContent.innerHTML = `
-                    <div class="project-detail">
-                        <div class="project-image" style="width: 100%; height: 250px; background-image: url('${project.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 2rem;"></div>
-                        
-                        <div class="project-header">
-                            <h2>${project.title}</h2>
-                            <span class="project-status status-${project.status}">${this.formatStatus(project.status)}</span>
-                        </div>
-                        
-                        <div class="project-description">
-                            <p>${project.description}</p>
-                        </div>
-                        
-                        <div class="project-technologies">
-                            <h4>Technologies Used</h4>
-                            <div class="tech-list">
-                                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                            </div>
-                        </div>
-                        
-                        <div class="project-links">
-                            ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> View Demo</a>` : ''}
-                            ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View Code</a>` : ''}
-                        </div>
-                        
-                        <div class="project-meta">
-                            <small class="text-muted">
-                                Created: ${new Date(project.createdAt).toLocaleDateString()}<br>
-                                Last Updated: ${new Date(project.updatedAt).toLocaleDateString()}
-                            </small>
-                        </div>
-                    </div>
-                `;
+                modalContent.innerHTML = `
+                    <div class="project-detail">
+                        <div class="project-image" style="width: 100%; height: 250px; background-image: url('${project.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 2rem;"></div>
+                        
+                        <div class="project-header">
+                            <h2>${project.title}</h2>
+                            <span class="project-status status-${project.status}">${this.formatStatus(project.status)}</span>
+                        </div>
+                        
+                        <div class="project-description">
+                            <p>${project.description}</p>
+                        </div>
+                        
+                        <div class="project-technologies">
+                            <h4>Technologies Used</h4>
+                            <div class="tech-list">
+                                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> View Demo</a>` : ''}
+                            ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View Code</a>` : ''}
+                        </div>
+                        
+                        <div class="project-meta">
+                            <small class="text-muted">
+                                Created: ${new Date(project.createdAt).toLocaleDateString()}<br>
+                                Last Updated: ${new Date(project.updatedAt).toLocaleDateString()}
+                            </small>
+                        </div>
+                    </div>
+                `;
 
-                this.addDetailStyles();
-                ModalManager.show('projectModal');
-            }
+                this.addDetailStyles();
+                ModalManager.show('projectModal');
+            }
 
-            addDetailStyles() {
-                if (!document.getElementById('project-detail-styles')) {
-                    const style = document.createElement('style');
-                    style.id = 'project-detail-styles';
-                    style.textContent = `
-                        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
-                        .project-header h2 { margin: 0; flex: 1; margin-right: 1rem; }
-                        .project-description { margin-bottom: 2rem; }
-                        .project-technologies { margin-bottom: 2rem; }
-                        .project-technologies h4 { margin-bottom: 1rem; color: var(--text-primary); }
-                        .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-                        .project-links { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-                        .project-meta { padding-top: 1rem; border-top: 1px solid var(--border-color); }
-                    `;
-                    document.head.appendChild(style);
-                }
-            }
-        }
+            addDetailStyles() {
+                if (!document.getElementById('project-detail-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'project-detail-styles';
+                    style.textContent = `
+                        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+                        .project-header h2 { margin: 0; flex: 1; margin-right: 1rem; }
+                        .project-description { margin-bottom: 2rem; }
+                        .project-technologies { margin-bottom: 2rem; }
+                        .project-technologies h4 { margin-bottom: 1rem; color: var(--text-primary); }
+                        .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+                        .project-links { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+                        .project-meta { padding-top: 1rem; border-top: 1px solid var(--border-color); }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+        }
 
-        // Initialize projects manager
-        let projectsManager;
-        document.addEventListener('DOMContentLoaded', () => {
-            projectsManager = new ProjectsManager();
-        });
-    </script>
-    <div id="page-loader" class="page-loader">
-  <div class="spinner"></div>
+        // Initialize projects manager
+        let projectsManager;
+        document.addEventListener('DOMContentLoaded', () => {
+            projectsManager = new ProjectsManager();
+        });
+    </script>
+    <div id="page-loader" class="page-loader">
+  <div class="spinner"></div>
 </div>
 </body>
 </html>
