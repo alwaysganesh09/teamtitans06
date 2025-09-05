@@ -8,6 +8,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Loader -->
+  <div id="page-loader" class="page-loader"><div class="spinner"></div></div>
+
+  <!-- Navbar -->
   <nav class="navbar glass">
     <div class="nav-container">
       <div class="nav-logo">
@@ -22,10 +26,16 @@
         <li><a href="resources.html" class="nav-link">Resources</a></li>
         <li><a href="courses.html" class="nav-link">Courses</a></li>
         <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
       </ul>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </div>
     </div>
   </nav>
 
+  <!-- Contact Form Section -->
   <main class="page">
     <section class="page-header">
       <div class="container">
@@ -44,6 +54,7 @@
                 <h3 class="card-title">Send us a message</h3>
                 <p class="card-subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
               </div>
+
               <form id="contactForm" class="contact-form">
                 <div class="form-group">
                   <label for="name" class="form-label">Full Name *</label>
@@ -71,9 +82,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary" id="submitBtn">
                   <span class="btn-text">Send Message</span>
-                  <span class="btn-loading hidden">
-                    <span class="loading"></span> Sending...
-                  </span>
+                  <span class="btn-loading hidden"><span class="loading"></span> Sending...</span>
                 </button>
               </form>
             </div>
@@ -83,7 +92,6 @@
           <div class="contact-info-section">
             <div class="contact-info">
               <h3>Contact Information</h3>
-              <p class="mb-3">We are here to help with projects, courses, and collaborations!</p>
               <div class="contact-item">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                 <div class="contact-details"><h4>Email</h4><p>teamtitanss06@gmail.com</p></div>
@@ -112,10 +120,20 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer glass">
     <div class="container">
       <div class="footer-content">
-        <span class="logo-text">TITANS</span>
+        <div class="footer-logo">
+          <span class="logo-text">TITANS</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projects</a>
+          <a href="resources.html">Resources</a>
+          <a href="courses.html">Courses</a>
+          <a href="contact.html">Contact</a>
+        </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Team Titans. All rights reserved.</p>
@@ -124,77 +142,47 @@
   </footer>
 
   <script>
-    // Simple Form Validator
-    class FormValidator {
-      static validateRequired(value) {
-        return value && value.trim() !== "";
-      }
-      static validateEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-      }
-      static validateMinLength(value, min) {
-        return value.length >= min;
-      }
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contactForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const btnText = submitBtn.querySelector(".btn-text");
+      const btnLoading = submitBtn.querySelector(".btn-loading");
 
-    // Contact Manager
-    class ContactManager {
-      constructor() {
-        this.init();
-      }
-      init() {
-        const form = document.getElementById("contactForm");
-        if (form) form.addEventListener("submit", (e) => this.handleSubmit(e));
-      }
-      async handleSubmit(e) {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const form = e.target;
-        const submitBtn = document.getElementById("submitBtn");
-        const btnText = submitBtn.querySelector(".btn-text");
-        const btnLoading = submitBtn.querySelector(".btn-loading");
 
+        // Get form data
         const formData = new FormData(form);
-        const data = {
-          name: formData.get("name"),
-          email: formData.get("email"),
-          subject: formData.get("subject"),
-          message: formData.get("message"),
-        };
+        const data = Object.fromEntries(formData.entries());
 
-        // Validation
-        if (
-          !FormValidator.validateRequired(data.name) ||
-          !FormValidator.validateRequired(data.email) ||
-          !FormValidator.validateEmail(data.email) ||
-          !FormValidator.validateRequired(data.subject) ||
-          !FormValidator.validateMinLength(data.message, 10)
-        ) {
-          alert("Please fill all fields correctly.");
-          return;
-        }
-
-        // Show loading
+        // Button loading state
         submitBtn.disabled = true;
         btnText.classList.add("hidden");
         btnLoading.classList.remove("hidden");
 
         try {
-          // Fake API delay
-          await new Promise((resolve) => setTimeout(resolve, 1500));
-          alert("Message sent successfully! We'll get back to you within 24 hours.");
-          form.reset();
-        } catch (err) {
-          alert("Failed to send message. Please try again.");
+          // Replace with YOUR Google Apps Script Web App URL
+          const scriptURL = "https://script.google.com/macros/s/AKfycbyyLos0eBLoV4QsjbgODLcvuQGlILkcg7L11vh3Rlu1bL54DhVmIGA5DkSobF2__3xN7A/exec";
+
+          const response = await fetch(scriptURL, {
+            method: "POST",
+            body: new URLSearchParams(data),
+          });
+
+          if (response.ok) {
+            alert("✅ Thank you! Your message has been sent.");
+            form.reset();
+          } else {
+            alert("❌ Failed to send. Please try again.");
+          }
+        } catch (error) {
+          alert("⚠️ Error: " + error.message);
         } finally {
           submitBtn.disabled = false;
           btnText.classList.remove("hidden");
           btnLoading.classList.add("hidden");
         }
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      new ContactManager();
+      });
     });
   </script>
 </body>
