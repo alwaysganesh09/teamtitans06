@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 // Security fix: Restrict CORS to only your Vercel frontend domain
 const corsOptions = {
-    origin: 'https://team-titansweb.vercel.app',
+    origin: 'https://teamtitans06.vercel.app/',
 };
 
 // Middleware
