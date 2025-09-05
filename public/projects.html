@@ -44,7 +44,6 @@
                 <p class="page-subtitle">Innovative solutions built with cutting-edge technology</p>
             </div>
         </section>
-
         <section class="page-content">
             <div class="container">
                 <div class="flex-between mb-3">
@@ -60,10 +59,7 @@
                         </select>
                     </div>
                 </div>
-
-                <div id="projectsGrid" class="grid grid-3">
-                </div>
-
+                <div id="projectsGrid" class="grid grid-3"></div>
                 <div id="noProjects" class="text-center mt-3 hidden">
                     <div class="card">
                         <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
@@ -75,11 +71,10 @@
         </section>
     </main>
 
-    <div id="projectModal" class="modal">
+    <div id="projectModal" class="modal" style="display: none;">
         <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div id="projectModalContent">
-            </div>
+            <button class="modal-close" id="projectModalCloseBtn">&times;</button>
+            <div id="projectModalContent"></div>
         </div>
     </div>
 
@@ -123,12 +118,10 @@
                 this.projects = [];
                 this.init();
             }
-
             init() {
                 this.setupEventListeners();
                 this.fetchAndRenderProjects();
             }
-
             setupEventListeners() {
                 const searchInput = document.getElementById('projectSearch');
                 const statusFilter = document.getElementById('statusFilter');
@@ -137,11 +130,9 @@
                 if (searchInput) {
                     searchInput.addEventListener('input', () => this.renderProjects());
                 }
-
                 if (statusFilter) {
                     statusFilter.addEventListener('change', () => this.renderProjects());
                 }
-
                 if (projectsGrid) {
                     projectsGrid.addEventListener('click', (event) => {
                         const targetBtn = event.target.closest('.view-details-btn');
@@ -151,8 +142,22 @@
                         }
                     });
                 }
-            }
 
+                // Modal close logic (added)
+                const projectModal = document.getElementById('projectModal');
+                const projectModalCloseBtn = document.getElementById('projectModalCloseBtn');
+                if (projectModalCloseBtn && projectModal) {
+                    projectModalCloseBtn.addEventListener('click', () => {
+                        projectModal.style.display = 'none';
+                    });
+                }
+                // Optional: click on modal backdrop closes modal
+                window.addEventListener('click', (e) => {
+                    if (e.target === projectModal) {
+                        projectModal.style.display = 'none';
+                    }
+                });
+            }
             async fetchAndRenderProjects() {
                 try {
                     const response = await fetch(`${this.apiBaseUrl}/projects`);
@@ -169,22 +174,17 @@
                     }
                 }
             }
-
             renderProjects() {
                 const projects = this.getFilteredProjects();
                 const grid = document.getElementById('projectsGrid');
                 const noProjects = document.getElementById('noProjects');
-
                 if (!grid) return;
-
                 if (projects.length === 0) {
                     grid.innerHTML = '';
                     noProjects?.classList.remove('hidden');
                     return;
                 }
-
                 noProjects?.classList.add('hidden');
-
                 grid.innerHTML = projects.map(project => `
                     <div class="card flip-card" data-project-id="${project._id}">
                         <div class="flip-card-inner">
@@ -212,10 +212,8 @@
                         </div>
                     </div>
                 `).join('');
-
                 this.addProjectStyles();
             }
-
             addProjectStyles() {
                 if (!document.getElementById('project-styles')) {
                     const style = document.createElement('style');
@@ -275,12 +273,10 @@
                     document.head.appendChild(style);
                 }
             }
-
             getFilteredProjects() {
                 let filteredProjects = [...this.projects];
                 const searchTerm = document.getElementById('projectSearch')?.value.toLowerCase() || '';
                 const statusFilter = document.getElementById('statusFilter')?.value || '';
-
                 if (searchTerm) {
                     filteredProjects = filteredProjects.filter(project => 
                         project.title.toLowerCase().includes(searchTerm) ||
@@ -288,52 +284,41 @@
                         (project.technologies && project.technologies.some(tech => tech.toLowerCase().includes(searchTerm)))
                     );
                 }
-
                 if (statusFilter) {
                     filteredProjects = filteredProjects.filter(project => project.status === statusFilter);
                 }
-
                 return filteredProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             }
-
             formatStatus(status) {
                 return status.split('-').map(word => 
                     word.charAt(0).toUpperCase() + word.slice(1)
                 ).join(' ');
             }
-
             showProjectDetails(projectId) {
                 const project = this.projects.find(p => p._id === projectId);
                 if (!project) return;
-
                 const modalContent = document.getElementById('projectModalContent');
                 if (!modalContent) return;
-
                 modalContent.innerHTML = `
                     <div class="project-detail">
                         <div class="project-image" style="width: 100%; height: 250px; background-image: url('${project.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 2rem;"></div>
-                        
                         <div class="project-header">
                             <h2>${project.title}</h2>
                             <span class="project-status status-${project.status}">${this.formatStatus(project.status)}</span>
                         </div>
-                        
                         <div class="project-description">
                             <p>${project.description}</p>
                         </div>
-                        
                         <div class="project-technologies">
                             <h4>Technologies Used</h4>
                             <div class="tech-list">
                                 ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                             </div>
                         </div>
-                        
                         <div class="project-links">
                             ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> View Demo</a>` : ''}
                             ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View Code</a>` : ''}
                         </div>
-                        
                         <div class="project-meta">
                             <small class="text-muted">
                                 Created: ${new Date(project.createdAt).toLocaleDateString()}<br>
@@ -342,11 +327,10 @@
                         </div>
                     </div>
                 `;
-
                 this.addDetailStyles();
-                ModalManager.show('projectModal');
+                // Directly show modal
+                document.getElementById('projectModal').style.display = 'block';
             }
-
             addDetailStyles() {
                 if (!document.getElementById('project-detail-styles')) {
                     const style = document.createElement('style');
