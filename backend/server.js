@@ -1,16 +1,16 @@
-// api/index.js
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const adminRoutes = require('../routes/adminRoutes');
 const path = require('path');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Security fix: Restrict CORS to only your Vercel frontend domain.
+// Security fix: Restrict CORS to only your Vercel frontend domain
 const corsOptions = {
-    origin: 'https://teamtitans06-fwpi.vercel.app',
+    origin: 'https://team-titansweb.vercel.app',
 };
 
 // Middleware
@@ -18,14 +18,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// Login route
+// New route for handling login requests
 app.post('/api/login', (req, res) => {
     const { password } = req.body;
     const correctPassword = process.env.ADMIN_PASSWORD;
@@ -45,5 +45,12 @@ app.post('/api/login', (req, res) => {
 // API Routes
 app.use('/api', adminRoutes);
 
-// Export the Express app as a Vercel serverless function
-module.exports = app;
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Catch-all route to serve the main index.html file for any unmatched routes
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
