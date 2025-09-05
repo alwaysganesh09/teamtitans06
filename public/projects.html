@@ -62,7 +62,7 @@
                 </div>
 
                 <div id="projectsGrid" class="grid grid-3">
-                    </div>
+                </div>
 
                 <div id="noProjects" class="text-center mt-3 hidden">
                     <div class="card">
@@ -79,7 +79,7 @@
         <div class="modal-content">
             <button class="modal-close">&times;</button>
             <div id="projectModalContent">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -114,15 +114,38 @@
         // Projects Manager
         class ProjectsManager {
             constructor() {
-                // API URL to fetch data from the backend
                 this.apiBaseUrl = '/api';
-                this.projects = []; // Stores fetched projects for filtering
+                this.projects = [];
                 this.init();
             }
 
             init() {
                 this.setupEventListeners();
                 this.fetchAndRenderProjects();
+            }
+
+            setupEventListeners() {
+                const searchInput = document.getElementById('projectSearch');
+                const statusFilter = document.getElementById('statusFilter');
+                const projectsGrid = document.getElementById('projectsGrid');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', () => this.renderProjects());
+                }
+
+                if (statusFilter) {
+                    statusFilter.addEventListener('change', () => this.renderProjects());
+                }
+
+                if (projectsGrid) {
+                    projectsGrid.addEventListener('click', (event) => {
+                        const targetBtn = event.target.closest('.view-details-btn');
+                        if (targetBtn) {
+                            const projectId = targetBtn.dataset.projectId;
+                            this.showProjectDetails(projectId);
+                        }
+                    });
+                }
             }
 
             async fetchAndRenderProjects() {
@@ -139,19 +162,6 @@
                     if (grid) {
                         grid.innerHTML = '<div class="text-center text-muted mt-3">Failed to load projects. Please check the server connection.</div>';
                     }
-                }
-            }
-
-            setupEventListeners() {
-                const searchInput = document.getElementById('projectSearch');
-                const statusFilter = document.getElementById('statusFilter');
-
-                if (searchInput) {
-                    searchInput.addEventListener('input', () => this.renderProjects());
-                }
-
-                if (statusFilter) {
-                    statusFilter.addEventListener('change', () => this.renderProjects());
                 }
             }
 
@@ -188,7 +198,7 @@
                                 <h3>${project.title}</h3>
                                 <p>${project.description.substring(0, 120)}...</p>
                                 <div class="card-actions">
-                                    <button class="btn btn-primary btn-small" onclick="projectsManager.showProjectDetails('${project._id}')">
+                                    <button class="btn btn-primary btn-small view-details-btn" data-project-id="${project._id}">
                                         <i class="fas fa-eye"></i> View Details
                                     </button>
                                     ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-secondary btn-small"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
@@ -262,7 +272,6 @@
             }
 
             getFilteredProjects() {
-                // Filtering is now done on the locally stored `this.projects` array
                 let filteredProjects = [...this.projects];
                 const searchTerm = document.getElementById('projectSearch')?.value.toLowerCase() || '';
                 const statusFilter = document.getElementById('statusFilter')?.value || '';
@@ -279,7 +288,6 @@
                     filteredProjects = filteredProjects.filter(project => project.status === statusFilter);
                 }
 
-                // Sort by creation date (newest first)
                 return filteredProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             }
 
@@ -290,7 +298,6 @@
             }
 
             showProjectDetails(projectId) {
-                // Find project by its MongoDB `_id`
                 const project = this.projects.find(p => p._id === projectId);
                 if (!project) return;
 
@@ -354,14 +361,13 @@
             }
         }
 
-        // Initialize projects manager
         let projectsManager;
         document.addEventListener('DOMContentLoaded', () => {
             projectsManager = new ProjectsManager();
         });
     </script>
     <div id="page-loader" class="page-loader">
-  <div class="spinner"></div>
-</div>
+        <div class="spinner"></div>
+    </div>
 </body>
 </html>
