@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             github: 'https://github.com/PRahul' // Placeholder, update as needed
         },
         {
-            name: 'K SHYAM',
+            name: 'CH SHYAM',
             role: 'Backend Developer, Tester',
             image: 'images/shyam.jpg',
             linkedin: 'http://www.linkedin.com/in/shyam-sundar-22a0b2315',
