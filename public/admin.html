@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Team Titans</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="titans-logo">
+                    <span class="logo-text">TITANS</span>
+                    <div class="logo-glow"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admin.html" class="nav-link admin-link active">Admin</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn btn-secondary" id="logoutButton" style="display: none;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Admin Panel</h1>
+                <p class="page-subtitle">Manage website content and user data</p>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="container admin-container">
+                <div class="admin-sidebar">
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" data-tab="projects">
+                            <i class="fas fa-code"></i> Projects
+                        </button>
+                        <button class="tab-btn" data-tab="resources">
+                            <i class="fas fa-book"></i> Resources
+                        </button>
+                        <button class="tab-btn" data-tab="courses">
+                            <i class="fas fa-graduation-cap"></i> Courses
+                        </button>
+                        <button class="tab-btn" data-tab="contacts">
+                            <i class="fas fa-envelope"></i> Contacts
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-main">
+                    <div id="projects-tab" class="tab-content active">
+                        <div class="admin-section">
+                            <div class="section-header">
+                                <h3>Manage Projects</h3>
+                                <button class="btn btn-primary" onclick="adminManager.showAddModal('projects')">
+                                    <i class="fas fa-plus"></i> Add Project
+                                </button>
+                            </div>
+                            <div id="projectsList" class="admin-list">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="resources-tab" class="tab-content">
+                        <div class="admin-section">
+                            <div class="section-header">
+                                <h3>Manage Resources</h3>
+                                <button class="btn btn-primary" onclick="adminManager.showAddModal('resources')">
+                                    <i class="fas fa-plus"></i> Add Resource
+                                </button>
+                            </div>
+                            <div id="resourcesList" class="admin-list">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="courses-tab" class="tab-content">
+                        <div class="admin-section">
+                            <div class="section-header">
+                                <h3>Manage Courses</h3>
+                                <button class="btn btn-primary" onclick="adminManager.showAddModal('courses')">
+                                    <i class="fas fa-plus"></i> Add Course
+                                </button>
+                            </div>
+                            <div id="coursesList" class="admin-list">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="contacts-tab" class="tab-content">
+                        <div class="admin-section">
+                            <div class="section-header">
+                                <h3>Contact Messages</h3>
+                                <div class="contact-stats">
+                                    <span id="totalContacts" class="stat-badge">0 Total</span>
+                                    <span id="unreadContacts" class="stat-badge unread">0 Unread</span>
+                                </div>
+                            </div>
+                            <div id="contactsList" class="admin-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <div id="adminModal" class="modal" style="
+    display: none; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div class="modal-content" style="
+        background: var(--card-color);
+        border-radius: 16px;
+        padding: 2.5rem;
+        max-width: 550px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        animation: modalSlideIn 0.3s ease-out;
+        box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    ">
+        <button class="modal-close" style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        ">&times;</button>
+        <div id="adminModalContent">
+            </div>
+    </div>
+</div>
+
+---
+
+<div id="contactDetailModal" class="modal" style="
+    display: none; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div class="modal-content" style="
+        background: var(--card-color);
+        border-radius: 16px;
+        padding: 2.5rem;
+        max-width: 550px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        animation: modalSlideIn 0.3s ease-out;
+        box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    ">
+        <button class="modal-close" style="
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        ">&times;</button>
+        <div id="contactDetailContent">
+            </div>
+    </div>
+</div>
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">TITANS</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="courses.html">Courses</a>
+                    <a href="developers.html">Developers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Team Titans. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

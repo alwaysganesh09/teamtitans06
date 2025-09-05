@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Certification Courses - Team Titans</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="page-loader" class="page-loader">
+  <div class="spinner"></div>
+</div>
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="titans-logo">
+                    <span class="logo-text">TITANS</span>
+                    <div class="logo-glow"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="courses.html" class="nav-link active">Courses</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Free Certification Courses</h1>
+                <p class="page-subtitle">Learn new technologies and earn certificates to advance your career</p>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="container">
+                <div class="flex-between mb-3">
+                    <div class="search-container">
+                        <input type="text" id="courseSearch" class="form-input" placeholder="Search courses..." style="max-width: 300px;">
+                    </div>
+                    <div class="filter-container flex gap-2">
+                        <select id="levelFilter" class="form-select" style="max-width: 150px;">
+                            <option value="">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                        <select id="durationFilter" class="form-select" style="max-width: 150px;">
+                            <option value="">All Durations</option>
+                            <option value="short">Short (< 10h)</option>
+                            <option value="medium">Medium (10-30h)</option>
+                            <option value="long">Long (> 30h)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="coursesGrid" class="grid grid-2">
+                    </div>
+
+                <div id="noCourses" class="text-center mt-3 hidden">
+                    <div class="card">
+                        <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                        <h3>No Courses Found</h3>
+                        <p class="text-secondary">No courses match your current search criteria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="courseModalContent">
+                </div>
+        </div>
+    </div>
+
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">TITANS</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="courses.html">Courses</a>
+                    <a href="developers.html">Developers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Team Titans. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Courses Manager
+        class CoursesManager {
+            constructor() {
+                // The API URL to fetch data from the backend
+                this.apiBaseUrl = 'http://localhost:5000/api';
+                this.courses = []; // This will store the fetched courses
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.fetchAndRenderCourses();
+            }
+
+            async fetchAndRenderCourses() {
+                try {
+                    const response = await fetch(`${this.apiBaseUrl}/courses`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    this.courses = await response.json();
+                    this.renderCourses();
+                } catch (error) {
+                    console.error('Error fetching courses:', error);
+                    const grid = document.getElementById('coursesGrid');
+                    if (grid) {
+                        grid.innerHTML = '<div class="text-center text-muted mt-3">Failed to load courses. Please check the server connection.</div>';
+                    }
+                }
+            }
+
+            setupEventListeners() {
+                const searchInput = document.getElementById('courseSearch');
+                const levelFilter = document.getElementById('levelFilter');
+                const durationFilter = document.getElementById('durationFilter');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', () => this.renderCourses());
+                }
+
+                if (levelFilter) {
+                    levelFilter.addEventListener('change', () => this.renderCourses());
+                }
+
+                if (durationFilter) {
+                    durationFilter.addEventListener('change', () => this.renderCourses());
+                }
+            }
+
+            renderCourses() {
+                const courses = this.getFilteredCourses();
+                const grid = document.getElementById('coursesGrid');
+                const noCourses = document.getElementById('noCourses');
+
+                if (!grid) return;
+
+                if (courses.length === 0) {
+                    grid.innerHTML = '';
+                    noCourses?.classList.remove('hidden');
+                    return;
+                }
+
+                noCourses?.classList.add('hidden');
+
+                grid.innerHTML = courses.map(course => `
+                    <div class="card course-card" data-course-id="${course._id}">
+                        <div class="course-image" style="width: 100%; height: 200px; background-image: url('${course.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 1rem;"></div>
+                        
+                        <div class="course-header">
+                            <div class="course-badges">
+                                <span class="level-badge level-${course.level}">${this.formatLevel(course.level)}</span>
+                                <span class="duration-badge">${course.duration}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <h3 class="card-title">${course.title}</h3>
+                            <p class="course-description">${course.description.substring(0, 120)}...</p>
+                            
+                            <div class="course-instructor">
+                                <i class="fas fa-user-tie"></i>
+                                <span>Instructor: ${course.instructor}</span>
+                            </div>
+                            
+                            <div class="course-skills">
+                                ${course.skills.slice(0, 3).map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                                ${course.skills.length > 3 ? `<span class="skill-tag">+${course.skills.length - 3}</span>` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <button class="btn btn-primary btn-small" onclick="coursesManager.showCourseDetails('${course._id}')">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                            <a href="${course.certificateUrl}" target="_blank" class="btn btn-secondary btn-small">
+                                <i class="fas fa-certificate"></i> Get Certified
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+
+                this.addCourseStyles();
+            }
+
+            addCourseStyles() {
+                if (!document.getElementById('course-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'course-styles';
+                    style.textContent = `
+                        .course-card { display: flex; flex-direction: column; height: 100%; }
+                        .course-header { margin-bottom: 1rem; }
+                        .course-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+                        .level-badge, .duration-badge { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+                        .level-beginner { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+                        .level-intermediate { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+                        .level-advanced { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+                        .duration-badge { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; }
+                        .course-description { color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem; }
+                        .course-instructor { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.875rem; }
+                        .course-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+                        .skill-tag { padding: 0.25rem 0.5rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; font-size: 0.75rem; color: var(--text-secondary); }
+                        .course-card:hover { transform: translateY(-8px); }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            getFilteredCourses() {
+                // Update: Filters are now applied to the locally stored 'this.courses' array
+                let filteredCourses = [...this.courses];
+                const searchTerm = document.getElementById('courseSearch')?.value.toLowerCase() || '';
+                const levelFilter = document.getElementById('levelFilter')?.value || '';
+                const durationFilter = document.getElementById('durationFilter')?.value || '';
+
+                if (searchTerm) {
+                    filteredCourses = filteredCourses.filter(course => 
+                        course.title.toLowerCase().includes(searchTerm) ||
+                        course.description.toLowerCase().includes(searchTerm) ||
+                        course.instructor.toLowerCase().includes(searchTerm) ||
+                        (course.skills && course.skills.some(skill => skill.toLowerCase().includes(searchTerm)))
+                    );
+                }
+
+                if (levelFilter) {
+                    filteredCourses = filteredCourses.filter(course => course.level === levelFilter);
+                }
+
+                if (durationFilter) {
+                    filteredCourses = filteredCourses.filter(course => {
+                        const duration = parseInt(course.duration);
+                        if (isNaN(duration)) return true; // Handle courses with non-numeric duration
+                        switch (durationFilter) {
+                            case 'short': return duration < 10;
+                            case 'medium': return duration >= 10 && duration <= 30;
+                            case 'long': return duration > 30;
+                            default: return true;
+                        }
+                    });
+                }
+                // Sort by creation date (newest first)
+                return filteredCourses.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            }
+
+            formatLevel(level) {
+                return level.charAt(0).toUpperCase() + level.slice(1);
+            }
+
+            showCourseDetails(courseId) {
+                // Update: Now finds course by its MongoDB _id
+                const course = this.courses.find(c => c._id === courseId);
+                if (!course) return;
+
+                const modalContent = document.getElementById('courseModalContent');
+                if (!modalContent) return;
+
+                modalContent.innerHTML = `
+                    <div class="course-detail">
+                        <div class="course-image" style="width: 100%; height: 250px; background-image: url('${course.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 2rem;"></div>
+                        
+                        <div class="course-header">
+                            <h2>${course.title}</h2>
+                            <div class="course-badges">
+                                <span class="level-badge level-${course.level}">${this.formatLevel(course.level)}</span>
+                                <span class="duration-badge">${course.duration}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="course-instructor">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Instructor: ${course.instructor}</span>
+                        </div>
+                        
+                        <div class="course-description">
+                            <p>${course.description}</p>
+                        </div>
+                        
+                        <div class="course-modules">
+                            <h4>Course Modules</h4>
+                            <ul class="modules-list">
+                                ${course.modules.map(module => `<li><i class="fas fa-check-circle"></i> ${module}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="course-skills-detail">
+                            <h4>Skills You'll Learn</h4>
+                            <div class="skills-list">
+                                ${course.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="course-actions">
+                            <a href="${course.certificateUrl}" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-certificate"></i> Get Certified
+                            </a>
+                        </div>
+                        
+                        <div class="course-meta">
+                            <small class="text-muted">
+                                Added: ${new Date(course.createdAt).toLocaleDateString()}<br>
+                                Last Updated: ${new Date(course.updatedAt).toLocaleDateString()}
+                            </small>
+                        </div>
+                    </div>
+                `;
+
+                this.addDetailStyles();
+                ModalManager.show('courseModal');
+            }
+
+            addDetailStyles() {
+                if (!document.getElementById('course-detail-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'course-detail-styles';
+                    style.textContent = `
+                        .course-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+                        .course-header h2 { margin: 0; flex: 1; margin-right: 1rem; }
+                        .course-instructor { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: var(--text-secondary); }
+                        .course-description { margin-bottom: 2rem; }
+                        .course-modules, .course-skills-detail { margin-bottom: 2rem; }
+                        .course-modules h4, .course-skills-detail h4 { margin-bottom: 1rem; color: var(--text-primary); }
+                        .modules-list { list-style: none; padding: 0; }
+                        .modules-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
+                        .modules-list li:last-child { border-bottom: none; }
+                        .modules-list li i { color: var(--primary-color); }
+                        .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+                        .course-actions { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+                        .course-meta { padding-top: 1rem; border-top: 1px solid var(--border-color); }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+        }
+
+        // Initialize courses manager
+        let coursesManager;
+        document.addEventListener('DOMContentLoaded', () => {
+            coursesManager = new CoursesManager();
+        });
+    </script>
+</body>
+</html>

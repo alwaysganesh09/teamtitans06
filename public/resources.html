@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Team Titans</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="titans-logo">
+                    <span class="logo-text">TITANS</span>
+                    <div class="logo-glow"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="resources.html" class="nav-link active">Resources</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admin.html" class="nav-link admin-link">Admin</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Development Resources</h1>
+                <p class="page-subtitle">Curated tools, libraries, and documentation for developers</p>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="container">
+                <div class="flex-between mb-3">
+                    <div class="search-container">
+                        <input type="text" id="resourceSearch" class="form-input" placeholder="Search resources..." style="max-width: 300px;">
+                    </div>
+                    <div class="filter-container">
+                        <select id="categoryFilter" class="form-select" style="max-width: 200px;">
+                            <option value="">All Categories</option>
+                            <option value="frontend">Frontend</option>
+                            <option value="backend">Backend</option>
+                            <option value="tools">Tools</option>
+                            <option value="design">Design</option>
+                            <option value="documentation">Documentation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="resourcesGrid" class="grid grid-3">
+                    </div>
+
+                <div id="noResources" class="text-center mt-3 hidden">
+                    <div class="card">
+                        <i class="fas fa-search" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                        <h3>No Resources Found</h3>
+                        <p class="text-secondary">No resources match your current search criteria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">TITANS</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="courses.html">Courses</a>
+                    <a href="developers.html">Developers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Team Titans. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Resources Manager
+        class ResourcesManager {
+            constructor() {
+                this.apiBaseUrl = 'http://localhost:5000/api';
+                this.resources = [];
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.fetchAndRenderResources();
+            }
+
+            async fetchAndRenderResources() {
+                try {
+                    const response = await fetch(`${this.apiBaseUrl}/resources`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    this.resources = await response.json();
+                    this.renderResources();
+                } catch (error) {
+                    console.error('Error fetching resources:', error);
+                    const grid = document.getElementById('resourcesGrid');
+                    if (grid) {
+                        grid.innerHTML = '<div class="text-center text-muted mt-3">Failed to load resources. Please check the server connection.</div>';
+                    }
+                }
+            }
+
+            setupEventListeners() {
+                const searchInput = document.getElementById('resourceSearch');
+                const categoryFilter = document.getElementById('categoryFilter');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', () => this.renderResources());
+                }
+
+                if (categoryFilter) {
+                    categoryFilter.addEventListener('change', () => this.renderResources());
+                }
+            }
+
+            renderResources() {
+                const resources = this.getFilteredResources();
+                const grid = document.getElementById('resourcesGrid');
+                const noResources = document.getElementById('noResources');
+
+                if (!grid) return;
+
+                if (resources.length === 0) {
+                    grid.innerHTML = '';
+                    noResources?.classList.remove('hidden');
+                    return;
+                }
+
+                noResources?.classList.add('hidden');
+
+                grid.innerHTML = resources.map(resource => `
+                    <div class="card resource-card" data-resource-id="${resource._id}">
+                        <div class="resource-header">
+                            <div class="resource-icon">
+                                <i class="${resource.icon}" style="font-size: 2rem; color: var(--primary-color);"></i>
+                            </div>
+                            <div class="resource-category">
+                                <span class="category-tag category-${resource.category}">${this.formatCategory(resource.category)}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <h3 class="card-title">${resource.title}</h3>
+                            <p class="resource-description">${resource.description}</p>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="${resource.url}" target="_blank" class="btn btn-primary btn-small">
+                                <i class="fas fa-external-link-alt"></i> Visit Resource
+                            </a>
+                        </div>
+                        
+                        <div class="resource-meta">
+                            <small class="text-muted">Added ${new Date(resource.createdAt).toLocaleDateString()}</small>
+                        </div>
+                    </div>
+                `).join('');
+
+                this.addResourceStyles();
+            }
+
+            addResourceStyles() {
+                if (!document.getElementById('resource-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'resource-styles';
+                    style.textContent = `
+                        .resource-card {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+                        }
+                        
+                        .resource-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: flex-start;
+                            margin-bottom: 1rem;
+                        }
+                        
+                        .resource-icon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 60px;
+                            height: 60px;
+                            background: var(--glass-bg);
+                            border-radius: 12px;
+                            border: 1px solid var(--glass-border);
+                        }
+                        
+                        .category-tag {
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 20px;
+                            font-size: 0.75rem;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                        }
+                        
+                        .category-frontend {
+                            background: rgba(59, 130, 246, 0.2);
+                            color: #3b82f6;
+                        }
+                        
+                        .category-backend {
+                            background: rgba(34, 197, 94, 0.2);
+                            color: #22c55e;
+                        }
+                        
+                        .category-tools {
+                            background: rgba(245, 158, 11, 0.2);
+                            color: #f59e0b;
+                        }
+                        
+                        .category-design {
+                            background: rgba(236, 72, 153, 0.2);
+                            color: #ec4899;
+                        }
+                        
+                        .category-documentation {
+                            background: rgba(139, 92, 246, 0.2);
+                            color: #8b5cf6;
+                        }
+                        
+                        .resource-description {
+                            color: var(--text-secondary);
+                            line-height: 1.5;
+                            flex-grow: 1;
+                            margin-bottom: 1rem;
+                        }
+                        
+                        .resource-meta {
+                            margin-top: auto;
+                            padding-top: 1rem;
+                            border-top: 1px solid var(--border-color);
+                        }
+                        
+                        .resource-card:hover {
+                            transform: translateY(-8px);
+                        }
+                        
+                        .resource-card:hover .resource-icon {
+                            background: var(--primary-color);
+                            color: white;
+                        }
+                        
+                        .resource-card:hover .resource-icon i {
+                            color: white !important;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            getFilteredResources() {
+                let filteredResources = [...this.resources];
+                const searchTerm = document.getElementById('resourceSearch')?.value.toLowerCase() || '';
+                const categoryFilter = document.getElementById('categoryFilter')?.value || '';
+
+                if (searchTerm) {
+                    filteredResources = filteredResources.filter(resource => 
+                        resource.title.toLowerCase().includes(searchTerm) ||
+                        resource.description.toLowerCase().includes(searchTerm) ||
+                        resource.category.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                if (categoryFilter) {
+                    filteredResources = filteredResources.filter(resource => resource.category === categoryFilter);
+                }
+
+                return filteredResources.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            }
+
+            formatCategory(category) {
+                return category.charAt(0).toUpperCase() + category.slice(1);
+            }
+        }
+
+        // Initialize resources manager
+        let resourcesManager;
+        document.addEventListener('DOMContentLoaded', () => {
+            resourcesManager = new ResourcesManager();
+        });
+    </script>
+    <div id="page-loader" class="page-loader">
+  <div class="spinner"></div>
+</div>
+</body>
+</html>
